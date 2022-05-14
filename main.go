@@ -38,9 +38,9 @@ func main() {
 		return
 	}
 
-	user, error := repositories.FindUserByNomorAbsen(users, absen)
-	if error != nil {
-		fmt.Println(error)
+	user, isExist := repositories.FindUserByNomorAbsen(users, absen)
+	if !isExist {
+		fmt.Println("User nomor absen", absen, "tidak ditemukan.")
 		return
 	}
 

@@ -3,7 +3,6 @@ package repositories
 import (
 	"assignment1/models"
 	"assignment1/params"
-	"errors"
 	"time"
 )
 
@@ -19,13 +18,13 @@ func InsertUser(req *params.CreateUser) models.User {
 	return newUser
 }
 
-func FindUserByNomorAbsen(users []models.User, absen int) (models.User, error) {
+func FindUserByNomorAbsen(users []models.User, absen int) (models.User, bool) {
 	currentUser := models.User{}
 	if (len(users) < absen) || (absen <= 0) {
-		return currentUser, errors.New("user tidak ditemukan")
+		return currentUser, false
 	}
 
 	currentUser = users[absen-1]
 
-	return currentUser, nil
+	return currentUser, true
 }
